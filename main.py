@@ -18,8 +18,18 @@ import webapp2
 import jinja2
 import os
 
+from google.appengine.ext import ndb
+
 jinja_environment = jinja2.Environment(loader=
     jinja2.FileSystemLoader(os.path.dirname(__file__)))
+    
+    
+class Pet(ndb.Model):
+    name = ndb.StringProperty()
+    animal_type = ndb.StringProperty()
+    breed = ndb.StringProperty()
+    age = ndb.IntegerProperty()
+    
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -27,11 +37,19 @@ class MainHandler(webapp2.RequestHandler):
         self.response.write(template.render())
         
     def post(self):
+        name = self.request.get('name')
+        animal_type = self.request.get('type')
+        breed = self.request.get('breed')
+        age = int(self.request.get('age'))
+        
+        new_pet = Pet(name=name, animal_type=animal_type, breed=breed, age=age)
+        new_pet.put()
+        
         template_variables = {
-            'name': self.request.get('name'),
-            'animal_type': self.request.get('type'),
-            'breed': self.request.get('breed'),
-            'age': self.request.get('age')
+            'name': name,
+            'animal_type': animal_type,
+            'breed': breed,
+            'age': age
         }
         template = jinja_environment.get_template('templates/pet_answers.html')
         self.response.write(template.render(template_variables))
