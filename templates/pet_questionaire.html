@@ -1,16 +1,22 @@
 <html>
 <head>
 	<title>Pet Questionaire</title>
+	<link rel="stylesheet" href="/resources/pets.css">
 </head>
 <body>
 	<h1>Tell Us About Your Pet!</h1>
 	
 	<form method="post">
-		<label>Name<input type="text" name="name"></label> <br>
-		<label>Animal Type<input type="text" name="type"></label> <br>
-		<label>Breed (optional)<input type="text" name="breed"></label> <br>
-		<label>Age<input type="text" name="age"></label> <br>
-		<button>Submit</button>
+		<label>Name<input id="name" type="text" name="name"></label> <br>
+		<label>Animal Type<input id="animal_type" type="text" name="type"></label> <br>
+		<label>Breed (optional)<input id="breed" type="text" name="breed"></label> <br>
+		<label>Age<input id="age" type="text" name="age"></label> <br>
+		<button id="submit">Submit</button>
 	</form>
+
+	<!-- TODO: Add any needed HTML here! -->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="/resources/pets.js"></script>
 </body>
 </html>

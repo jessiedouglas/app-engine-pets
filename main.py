@@ -37,14 +37,17 @@ class MainHandler(webapp2.RequestHandler):
         self.response.write(template.render())
         
     def post(self):
+        # TODO: Change this method so that it only saves the data and doesn't render
+        # a new page.
+        
         name = self.request.get('name')
         animal_type = self.request.get('type')
         breed = self.request.get('breed')
         age = int(self.request.get('age'))
-        
+
         new_pet = Pet(name=name, animal_type=animal_type, breed=breed, age=age)
         new_pet.put()
-        
+
         template_variables = {
             'name': name,
             'animal_type': animal_type,
